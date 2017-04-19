@@ -1,5 +1,14 @@
 $(function() {
     'use strict';
+    var status1 = 1;
+    var status2 = 1;
+    var status3 = 1;
+    var status4 = 1;
+    var status5 = 1;
+    var status6 = 1;
+    var status7 = 1;
+    var status8 = 1;
+    //icons4 show × status is 1
     $(".select1").on("mouseover", function() {
         $(".city").show();
     });
@@ -13,9 +22,11 @@ $(function() {
         if (mi == '' || !first.test(mi)) {
             $(".name .icons4").show();
             $(".name .icons3").hide();
+            status1 = 1; //×
         } else {
             $(".name .icons3").show();
             $(".name .icons4").hide();
+            status1 = 0 //√
         }
     }); //小区名称 
     var address = ['弓箭坊小区', '三山街地铁站', '弓箭坊玉带园小区', '弓箭坊社区'];
@@ -64,16 +75,16 @@ $(function() {
     $("body").on("click", function() {
             $(".search").html("").hide();
         }) //点击空白清空
-
-
-
+    
     $("#area,#ban").on("change", function() {
         if ($("#area").find('option:selected').text() == "区属" || $("#ban").find('option:selected').text() == "板块") {
             $(".plate .icons4").show();
             $(".plate .icons3").hide();
+            status2 = 1;
         } else {
             $(".plate .icons4").hide();
             $(".plate .icons3").show();
+            status2 = 0
         }
     }); //区属板块
 
@@ -82,9 +93,11 @@ $(function() {
         if ($("#select-con").find('option:selected').text() == "选择卧室内容" || $("#select-option").find('option:selected').text() == "选择限制条件") {
             $(".function .icons4").show();
             $(".function .icons3").hide();
+            status3 = 1;
         } else {
             $(".function .icons4").hide();
             $(".function .icons3").show();
+            status3 = 0
         }
     }); //户型
 
@@ -99,9 +112,11 @@ $(function() {
         if (all == '' || !rooms.test(w1) || !rooms.test(w2) || !rooms.test(w3) || !rooms.test(w4) || all <= 0) {
             $(".house .icons4").show();
             $(".house .icons3").hide();
+            status4 = 1;
         } else {
             $(".house .icons3").show();
             $(".house .icons4").hide();
+            status4 = 0
         } //值可以为0 但不全为0
     }); //出租形式
 
@@ -113,9 +128,11 @@ $(function() {
         if (con == '' || !area.test(con)) {
             $(".house2 .icons4").show();
             $(".house2 .icons3").hide();
+            status5 = 1
         } else {
             $(".house2 .icons3").show();
             $(".house2 .icons4").hide();
+            status5 = 0
         }
     }); //面积
 
@@ -125,18 +142,22 @@ $(function() {
         if (con == '' || !area.test(con)) {
             $(".money .icons4").show();
             $(".money .icons3").hide();
+            status6 = 1
         } else {
             $(".money .icons3").show();
             $(".money .icons4").hide();
+            status6 = 0
         }
     }); //租金
     $('input[name="checkbox"]').on("change", function() {
         if ($('input[name="checkbox"]').is(':checked')) {
             $(".pay .icons3").show();
             $(".pay .icons4").hide();
+            status7 = 0
         } else {
             $(".pay .icons4").show();
             $(".pay .icons3").hide();
+            status7 = 1
         }
     });
 
@@ -159,15 +180,17 @@ $(function() {
             $(".yanzheng").removeClass("h").text("手机号不能为空").show();
             $(".phone .icons3").hide();
             $(".phone .icons4").hide();
+            status8 = 1
         } else if (!zz.test(nums)) {
             $(".phone .icons4").show();
             $(".yanzheng").removeClass("h").text("手机号不能为空").hide();
             $(".phone .icons3").hide();
-
+            status8 = 1
         } else {
             $(".phone .icons3").show();
             $(".yanzheng").removeClass("h").text("手机号不能为空").hide();
             $(".phone .icons4").hide();
+            status8 = 0
         }
     }); //手机号
 
@@ -191,9 +214,16 @@ $(function() {
         });
         var m = $(".inpp").val();
         //jquery获取复选框值 
-
-        var val = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g + h + ' ' + i + ' ' + j + ' ' + k + ' ' + l + ' ' + chk_value + ' ' + m;
-        $("textarea").text(val);
+        $("textarea").html(
+            '*小区名称:' + a + "\n" +
+            '*区属板块:' + b + c + "\n" +
+            '*户型:' + d + '室' + e + '厅' + f + '卫' + g + '阳台' + "\n" +
+            '*出租形式:' + h + i + j + "\n" +
+            '*面积:' + k + "\n" +
+            '*租金:' + l + "\n" +
+            '*付款方式:' + chk_value + "\n" +
+            '*手机号码:' + m
+        )
     }); //textarea 汇总
 
 
@@ -208,4 +238,12 @@ $(function() {
         $(".pic-wk").hide();
         $(".file").show();
     }); //点击关闭图片
+
+    $(".submit").on("click", function() {
+        if (status1 == 0 && status2 == 0 && status3 == 0 && status4 == 0 && status5 == 0 && status6 == 0 && status7 == 0 && status8 == 0) {
+            location.href = "http://www.baidu.com" //all√show
+        } else {
+            $("u").html("您填写的信息有误")
+        }
+    })
 })

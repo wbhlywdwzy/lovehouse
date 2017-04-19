@@ -278,7 +278,6 @@
             top: 30px;
             border: 1px solid #dddddd;
         }
-        
         .plate {
             width: 538px;
             height: 32px;
@@ -517,13 +516,14 @@
                 color: blue;
             }
         }
-        .text-wk{
+        .text-wk {
             margin-top: 30px;
         }
         textarea {
             width: 420px;
             height: 80px;
             float: left;
+            line-height: 25px;
             font-size: 16px;
             @extend .br;
         }
@@ -535,6 +535,11 @@
             color: #fff;
             font-size: 16px;
             margin: 35px auto auto 85px;
+        }
+        u {
+            color: red;
+            text-decoration: none;
+            font-size: 16px;
         }
     }
 }
